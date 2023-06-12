@@ -1,0 +1,153 @@
+input: '100*110'
+blank: ' '
+start state: q0
+table:
+  q0:
+    0 : {write: 2, R : q1}
+    1 : {write: 3, R : q1}
+    '*': {R: q4}
+    
+  q1:
+    0: R
+    1: R
+    '*': {R: q2}
+    
+  q2:
+    4: R
+    5: R
+    ' ': { L: q6}
+    0: {write: 4, L: q3}
+    1: {write: 5, L: q3}
+    
+  q3:
+    4: L
+    5: L
+    '*': L
+    0: L
+    1: L
+    2: {R: q0}
+    3: {R: q0}
+  q4:
+    4: R
+    5: R
+    0: {write: ' ', L: q5}
+    1: {write: ' ',  L: q5}
+    ' ': {L: q8}
+  q5:
+    0: {write: ' ', L}
+    1: {write: ' ', L}
+    2: {write: ' ', L}
+    3: {write: ' ', L}
+    4: {write: ' ', L}
+    5: {write: ' ', L}
+    '*': {write: ' ', L}
+    'X': {write: ' ', L}
+    ' ': {write: 2, R: q7}
+  q6:
+    0: {write: ' ', L}
+    1: {write: ' ', L}
+    2: {write: ' ', L}
+    3: {write: ' ', L}
+    4: {write: ' ', L}
+    5: {write: ' ', L}
+    '*': {write: ' ', L}
+    'X': {write: ' ', L}
+    
+    ' ': {write: 1, R: q7}
+    
+  q7:
+    ' ': L
+    
+  q8:
+    2: {write: 0, L}
+    3: {write: 1, L}
+    4: {write: 0, L}
+    5: {write: 1, L}
+    '*': L
+    ' ': {R: q9}
+  q9:
+    0: {write: 'X', R: q14}
+    1: {write: 'X', R: q10}
+    '*': {R: q22}
+    
+  q10:
+    0: R
+    1: R
+    '*': {R: q11}
+    
+  q11:
+    0: {write: ' ', R: q20}
+    1: {write: 'X', L: q12}
+    'X': R
+    
+  
+  
+  q12:
+    0: L
+    1: L
+    'X': L
+    '*': {L: q13}
+  
+  q13:
+    0: L
+    1: L
+    'X': {R: q9}
+    
+  
+    
+  q14:
+    0: R
+    1: R
+    '*': {R: q15}
+  
+  q15:
+    'X': R
+    1: {write: ' ', R: q18}
+    0: {write: 'X', L: q16}
+    
+    
+  
+  
+  q16:
+    'X': L
+    '*': {L: q17}
+    
+  q18:
+    0: {write: ' ', R}
+    1: {write: ' ', R}
+    ' ': {L: q19}
+  
+  q19:
+    ' ': L
+    'X': {write: ' ', L: q5}
+  q17:
+    0: L
+    1: L
+    'X': {R: q9}
+ 
+ 
+  q20:
+    0: {write: ' ', R}
+    1: {write: ' ', R}
+    ' ': {L: q21}
+    
+  q21:
+    ' ': L
+    'X': {write: ' ', L: q6}
+    
+  q22:
+    'X': {write: ' ', R}
+    ' ': {L: q23}
+    
+  q23:
+    ' ': L
+    '*': {write: ' ', L: q24}
+    
+  q24:
+    'X': {write: ' ', L}
+    ' ': {write: 0, R: q25}
+    
+  q25:
+    ' ': L
+    
+  
